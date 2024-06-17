@@ -1,0 +1,21 @@
+config:
+  # This is a test server run by team Artillery
+  # It's designed to be highly scalable
+  # nginx ip
+  target: http://34.47.70.16
+  phases:
+    # 333초동안 요청을 보냄 * 3번 => 999초
+    - duration: 333
+      arrivalRate: 3
+      name: Warm up
+  paylod:
+    path: "ratings_test_1k.csv"
+    fields:
+      - "content"
+scenarios:
+  - name: "just post content"
+    flow:
+      - post:
+          url: "/post"
+          json:
+            content: "{{ content }}"

@@ -1,0 +1,14 @@
+config:
+  # This is a test server run by team Artillery
+  # It's designed to be highly scalable
+  # nginx ip
+  target: http://34.47.70.16
+  phases:
+    - duration: 300
+      arrivalRate: 16
+      name: Warm up
+scenarios:
+  - name: "just get hash"
+    flow:
+      - get:
+          url: "/hash/123"
